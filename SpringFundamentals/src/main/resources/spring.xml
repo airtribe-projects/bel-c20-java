@@ -1,0 +1,29 @@
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+<!--       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--       xmlns:context="http://www.springframework.org/schema/context"-->
+<!--       xsi:schemaLocation="http://www.springframework.org/schema/beans-->
+<!--    http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">-->
+
+
+<!--  <bean class="org.example.Engine" id="engine">-->
+<!--    <property name="enginePower" value="500"/>-->
+<!--    <property name="engineType" value="Electric"/>-->
+<!--  </bean>-->
+
+<!--  <bean class="org.example.Car" id="car1">-->
+<!--&lt;!&ndash;    <property name="carModel" value="Tesla Model 3"/>&ndash;&gt;-->
+<!--&lt;!&ndash;    <property name="carType" value="2021"/>&ndash;&gt;-->
+<!--    <constructor-arg value="Tesla Model 3"/>-->
+<!--    <constructor-arg value="2021"/>-->
+<!--    <constructor-arg ref="engine"/>-->
+<!--  </bean>-->
+
+<!--  <bean class="org.example.Car" id="car2">-->
+<!--    <property name="carModel" value="BMW"/>-->
+<!--    <property name="carType" value="2022"/>-->
+<!--    <property name="engine" ref="engine" />-->
+<!--  </bean>-->
+
+<!--</beans>-->
