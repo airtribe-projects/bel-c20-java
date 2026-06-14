@@ -1,42 +1,21 @@
 package org.airtribe.LearnerManagementSystemBELC20.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import java.util.List;
 
+public class LearnerDTO {
 
-@Entity
-public class Learner {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long learnerId;
 
   private String learnerName;
 
-  @Column(unique = true)
   private String learnerEmail;
 
   private String learnerPhone;
 
-  @ManyToMany(mappedBy = "learners")
-  @JsonIgnore
-  private List<Cohort> cohorts;
+  private List<CohortDTO> cohorts;
 
-
-  public Learner(Long learnerId, String learnerName, String learnerEmail, String learnerPhone) {
-    this.learnerId = learnerId;
-    this.learnerName = learnerName;
-    this.learnerEmail = learnerEmail;
-    this.learnerPhone = learnerPhone;
-  }
-
-  public Learner(Long learnerId, String learnerName, String learnerEmail, String learnerPhone, List<Cohort> cohorts) {
+  public LearnerDTO(Long learnerId, String learnerName, String learnerEmail, String learnerPhone,
+      List<CohortDTO> cohorts) {
     this.learnerId = learnerId;
     this.learnerName = learnerName;
     this.learnerEmail = learnerEmail;
@@ -44,7 +23,7 @@ public class Learner {
     this.cohorts = cohorts;
   }
 
-  public Learner() {
+  public LearnerDTO() {
 
   }
 
@@ -80,11 +59,11 @@ public class Learner {
     this.learnerPhone = learnerPhone;
   }
 
-  public List<Cohort> getCohorts() {
+  public List<CohortDTO> getCohorts() {
     return cohorts;
   }
 
-  public void setCohorts(List<Cohort> cohorts) {
+  public void setCohorts(List<CohortDTO> cohorts) {
     this.cohorts = cohorts;
   }
 }

@@ -2,12 +2,19 @@ package org.airtribe.LearnerManagementSystemBELC20.controller;
 
 import java.util.List;
 import org.airtribe.LearnerManagementSystemBELC20.entity.Learner;
+import org.airtribe.LearnerManagementSystemBELC20.entity.LearnerDTO;
+import org.airtribe.LearnerManagementSystemBELC20.exception.LearnerNotFoundException;
 import org.airtribe.LearnerManagementSystemBELC20.service.LearnerManagementService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -27,19 +34,23 @@ public class LearnerController {
     return _learnerManagementService.createLearner(learner);
   }
 
-  @GetMapping("/learners")
-  public List<Learner> getAllLearners() {
-    return _learnerManagementService.getAllLearner();
-  }
-
   @GetMapping("/learners/{learnerId}")
-  public Learner getLearnerById(@PathVariable Long learnerId) {
-    return _learnerManagementService.findById(learnerId);
+  public Learner getLearnerById(@PathVariable Long learnerId) throws LearnerNotFoundException {
+      return _learnerManagementService.findById(learnerId);
   }
 
-  @GetMapping("/fetchLearners/{learnerName}")
-  public List<Learner> getLearnerByName(@PathVariable String learnerName) {
-    return _learnerManagementService.findByLearnerName(learnerName);
+
+  @GetMapping("/learners")
+  public List<LearnerDTO> fetchLearnersByName(@RequestParam(value = "learnerName", required = false) String learnerName,
+      @RequestParam(value = "learnerEmail", required = false) String learnerEmail) {
+   List<Learner> learners =  _learnerManagementService.executeBusinessLogic(learnerName, learnerEmail);
+   return _learnerManagementService.convertLearnersToDTOs(learners);
   }
+
 
 }
+
+// "/learners?learnerName=test"
+// "/learners?learnerEmail=test@gmail.com"
+// "/learners?learnerName=test&learnerEmail=test@gmail.com"
+// "/learners"

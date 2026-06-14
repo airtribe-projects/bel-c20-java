@@ -15,4 +15,8 @@ public interface LearnerRepository extends JpaRepository<Learner, Long> {
 
   @Query("SELECT l FROM Learner l WHERE l.learnerName = ?1")
   public List<Learner> findMyWayOfFetchingLearners(String learnerName);
+
+  public Learner findByLearnerNameAndLearnerEmail(String learnerName, String learnerEmail);
+
+  public Learner findByLearnerEmail(String learnerEmail);
 }
