@@ -1,6 +1,7 @@
 package org.airtribe.LearnerManagementSystemBELC20.repository;
 
 import java.util.List;
+import java.util.Optional;
 import org.airtribe.LearnerManagementSystemBELC20.entity.Learner;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.NativeQuery;
@@ -18,5 +19,6 @@ public interface LearnerRepository extends JpaRepository<Learner, Long> {
 
   public Learner findByLearnerNameAndLearnerEmail(String learnerName, String learnerEmail);
 
-  public Learner findByLearnerEmail(String learnerEmail);
+  public Optional<Learner> findByLearnerEmail(String learnerEmail);
+
 }

@@ -12,14 +12,14 @@ import java.util.List;
 public class Course {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long courseId;
 
   private String courseName;
 
   private String courseDescription;
 
-  @OneToMany
+  @OneToMany(mappedBy = "course")
   private List<Cohort> cohorts;
 
   public Course(Long courseId, String courseName, String courseDescription, List<Cohort> cohorts) {

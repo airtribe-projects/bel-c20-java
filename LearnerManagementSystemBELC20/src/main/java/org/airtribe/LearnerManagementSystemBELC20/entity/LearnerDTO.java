@@ -27,6 +27,13 @@ public class LearnerDTO {
 
   }
 
+  public LearnerDTO(Long learnerId, String learnerName, String learnerEmail, String learnerPhone) {
+    this.learnerId = learnerId;
+    this.learnerName = learnerName;
+    this.learnerEmail = learnerEmail;
+    this.learnerPhone = learnerPhone;
+  }
+
   public Long getLearnerId() {
     return learnerId;
   }

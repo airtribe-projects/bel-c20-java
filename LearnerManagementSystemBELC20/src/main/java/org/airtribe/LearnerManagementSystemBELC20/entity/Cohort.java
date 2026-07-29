@@ -1,5 +1,6 @@
 package org.airtribe.LearnerManagementSystemBELC20.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,14 +14,14 @@ import java.util.List;
 public class Cohort {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long cohortId;
 
   private String cohortName;
 
   private String cohortDescription;
 
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.ALL)
   private List<Learner> learners;
 
   @ManyToOne

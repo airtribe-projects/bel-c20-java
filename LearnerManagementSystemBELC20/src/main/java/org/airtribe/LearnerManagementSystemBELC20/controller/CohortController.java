@@ -2,11 +2,14 @@ package org.airtribe.LearnerManagementSystemBELC20.controller;
 
 import java.util.List;
 import org.airtribe.LearnerManagementSystemBELC20.entity.Cohort;
+import org.airtribe.LearnerManagementSystemBELC20.entity.Learner;
+import org.airtribe.LearnerManagementSystemBELC20.entity.LearnerListBody;
 import org.airtribe.LearnerManagementSystemBELC20.exception.CohortNotFoundException;
 import org.airtribe.LearnerManagementSystemBELC20.exception.LearnerNotFoundException;
 import org.airtribe.LearnerManagementSystemBELC20.service.LearnerManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +31,18 @@ public class CohortController {
   public Cohort assignLearnerToCohort(@RequestParam("learnerId") Long learnerId, @RequestParam("cohortId") Long cohortId)
       throws CohortNotFoundException, LearnerNotFoundException {
     return  _learnerManagementService.assignLearnerToCohort(learnerId, cohortId);
+  }
+
+//  @PostMapping("/cohorts/{cohortId}/learners")
+//  public Cohort mapLearnersToCohorts(@PathVariable("cohortId") Long cohortId, @RequestBody LearnerListBody learnerIds)
+//      throws CohortNotFoundException, LearnerNotFoundException {
+//    return _learnerManagementService.assignLearnersToCohort(cohortId, learnerIds.getLearnerIds());
+//  }
+
+  @PostMapping("/cohorts/{cohortId}/learners")
+  public Cohort createLearnersAndMapThemToCohorts(@PathVariable("cohortId") Long cohortId, @RequestBody List<Learner> learners)
+      throws CohortNotFoundException {
+    return _learnerManagementService.createAndAssignLearnersToCohorts(cohortId, learners);
   }
 
   @GetMapping("/cohorts")
